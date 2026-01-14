@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  traitement:
+    image: 127.0.0.1:5000/romain-traitement:latest
+    container_name: traitement
+    networks:
+      - romain-net
+
+  server:
+    image: 127.0.0.1:5000/romain-server:latest
+    container_name: server
+    depends_on:
+      - traitement
+    networks:
+      - romain-net
+
+networks:
+  romain-net:
+    driver: bridge
+
